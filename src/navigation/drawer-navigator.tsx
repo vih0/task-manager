@@ -22,6 +22,7 @@ export default function DrawerNavigator({ navigation }: Props) {
           drawerIcon: ({ size, color }) => (
             <Ionicons name="home-outline" size={size} color={color} />
           ),
+          headerTitle: '',
         }}
       />
       <Drawer.Screen
