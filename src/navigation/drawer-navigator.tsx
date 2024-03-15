@@ -1,7 +1,8 @@
 import { FontAwesome, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { Pressable } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
+import React from 'react';
+import { Pressable } from 'react-native';
 
 import { RootStackParamList } from '.';
 import TabNavigator from './tab-navigator';
@@ -12,16 +13,20 @@ type Props = StackScreenProps<RootStackParamList, 'DrawerNavigator'>;
 const Drawer = createDrawerNavigator();
 
 export default function DrawerNavigator({ navigation }: Props) {
-	return (
-		<Drawer.Navigator>
+  return (
+    <Drawer.Navigator>
       <Drawer.Screen
         name="Home"
         component={Home}
         options={{
-          drawerIcon: ({ size, color }) => <Ionicons name="home-outline" size={size} color={color} />,
+          drawerIcon: ({ size, color }) => (
+            <Ionicons name="home-outline" size={size} color={color} />
+          ),
         }}
       />
-			<Drawer.Screen name="Tabs" component={TabNavigator}
+      <Drawer.Screen
+        name="Tabs"
+        component={TabNavigator}
         options={{
           headerRight: () => (
             <Pressable onPress={() => navigation.navigate('Modal')}>
@@ -44,7 +49,7 @@ export default function DrawerNavigator({ navigation }: Props) {
             <MaterialIcons name="border-bottom" size={size} color={color} />
           ),
         }}
-       />
-		</Drawer.Navigator>
-	);
+      />
+    </Drawer.Navigator>
+  );
 }

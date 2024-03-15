@@ -1,24 +1,20 @@
+import React from 'react';
+import { Text, View } from 'react-native';
 
-  	import { Text, View } from "react-native";
-
-
-import EditScreenInfo from "../components/edit-screen-info";
+import EditScreenInfo from '../components/edit-screen-info';
 
 export default function TabTwoScreen() {
-	
-		return (
-			<View className={styles.container}>
-				<Text className={styles.title}>Tab Two</Text>
-				<View className={styles.separator} />
-				<EditScreenInfo path="src/screens/two.tsx" />
-			</View>
-		);
-	
+  return (
+    <View className={styles.container}>
+      <Text className={styles.title}>Tab Two</Text>
+      <View className={styles.separator} />
+      <EditScreenInfo path="src/screens/two.tsx" />
+    </View>
+  );
 }
 
-
-  	const styles = {
-		container: "items-center flex-1 justify-center",
-		separator: "h-[1px] my-7 w-4/5 bg-gray-200",
-		title: "text-xl font-bold"
-	};
+const styles = {
+  container: 'items-center flex-1 justify-center bg-gray-800',
+  separator: 'h-[1px] my-7 w-4/5 bg-gray-200',
+  title: 'text-xl font-bold',
+};
