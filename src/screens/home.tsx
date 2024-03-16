@@ -1,12 +1,13 @@
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 
-import EditScreenInfo from '../components/edit-screen-info';
-
-import { TasksList } from '~/components/tasks-list';
+import { TasksList } from '~/components';
 
 const Page = () => {
+  const navigation = useNavigation();
+
   const day = new Date();
   const formatedDate = Intl.DateTimeFormat('pt-BR', {
     dateStyle: 'short',
@@ -20,7 +21,7 @@ const Page = () => {
       </View>
       <View className={styles.separator} />
       <TasksList />
-      <Pressable className={styles.button}>
+      <Pressable className={styles.button} onPress={() => navigation.navigate('Modal')}>
         <Ionicons name="add-outline" size={30} color="white" />
       </Pressable>
     </View>
