@@ -1,26 +1,37 @@
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import { Button, Platform, Pressable, Text, TextInput, View } from 'react-native';
 
-  	import { Platform, Text, View } from "react-native";
+import EditScreenInfo from '../components/edit-screen-info';
+import { TaskForm } from '~/components';
 
-import { StatusBar } from "expo-status-bar";
-
-import EditScreenInfo from "../components/edit-screen-info";
 
 export default function Modal() {
-	
-		return (
-			<View className={styles.container}>
-				<StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
-				<Text className={styles.title}>Modal</Text>
-				<View className={styles.separator} />
-				<EditScreenInfo path="src/screens/modal.tsx" />
-			</View>
-		)
-	
+  const navigation = useNavigation();
+
+  return (
+    <>
+      <View className={styles.container}>
+        <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
+        <View className={styles.wrapper}>
+          <Pressable className="my-4 mx-0" onPress={() => navigation.goBack()}>
+            <Ionicons name="arrow-back-outline" size={26} />
+          </Pressable>
+          <Text className={styles.title}>Adicione uma nova tarefa:</Text>
+        </View>
+        <View className={styles.separator} />
+        <TaskForm />
+      </View>
+    </>
+  );
 }
 
+const styles = {
+  container: 'items-start flex-1 justify-start my-16 mx-8',
+  separator: 'h-[1px] my-7 w-full bg-gray-200',
+  title: 'text-xl font-bold',
 
-  	const styles = {
-		container: "items-center flex-1 justify-center",
-		separator: "h-[1px] my-7 w-4/5 bg-gray-200",
-		title: "text-xl font-bold"
-	};
+  wrapper: `flex flex-row gap-4 items-center`,
+};
