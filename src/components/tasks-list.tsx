@@ -2,54 +2,24 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 
-import { Task } from '~/@types';
+import { Tarefas } from '~/@types';
 
-export function TasksList() {
-  const tasks: Task[] = [
-    {
-      id: 1,
-      title: 'Tomar Cafe',
-      status: true,
-      description: 'comer uma proteina e uma fruta obrigatoriamente',
-      priority: 1,
-    },
-    {
-      id: 2,
-      title: 'Tomar Cafe',
-      status: false,
-      description: 'comer uma proteina e uma fruta obrigatoriamente',
-      priority: 3,
-    },
-  ];
-  const priorityType = (number: number) => {
-    switch (number) {
-      case 0:
-        return 'bg-gray-500';
-      case 1:
-        return 'bg-blue-500';
-      case 2:
-        return 'bg-yellow-500';
-      case 3:
-        return 'bg-red-500';
-      default:
-        return 'bg-gray-500';
-    }
-  };
+export function TasksList({ tarefas }: Tarefas) {
   return (
     <View className="w-full px-4 gap-4">
-      {tasks.map((task) => (
-        <View className={styles.container} key={task.id}>
-          <View className={`${styles.priority} ${priorityType(task.priority)}`} />
+      {tarefas.map((tarefa) => (
+        <View className={styles.container} key={tarefa.id}>
+          <View className={styles.priority} style={{ backgroundColor: tarefa.prioridade.cor }} />
           <View className={styles.content}>
-            <Text className={styles.title}>{task.title}</Text>
-            <Text>{task.description}</Text>
+            <Text className={styles.title}>{tarefa.titulo}</Text>
+            <Text>{tarefa.descricao}</Text>
           </View>
           <Pressable className={styles.button}>
             {({ pressed }) => (
               <Ionicons
                 name="checkmark-circle-outline"
                 size={32}
-                color={task.status ? 'green' : 'black'}
+                color={tarefa.concluido ? 'green' : 'black'}
                 style={{ opacity: pressed ? 0.6 : 1 }}
               />
             )}
