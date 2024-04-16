@@ -1,6 +1,8 @@
 import React from 'react';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 import { Button, Pressable, Text, TextInput, View } from 'react-native';
+
+import { Methods } from '~/functions/methods';
 type FormData = {
   titulo: string;
   descricao: string;
@@ -20,34 +22,19 @@ export function TaskForm() {
     },
   });
 
-  const onSubmit = async (data) => {
-    try {
-      const response = await fetch('http://192.168.0.21:8080/tarefa/criar', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify([
+  const onSubmit = (data: FormData) => {
+    const handlePost = async () =>
+      await Methods.post({
+        url: 'http://192.168.0.21:8080/tarefa/criar',
+        body: [
           {
             descricao: data.descricao,
             prioridade: data.prioridade,
             titulo: data.titulo,
           },
-        ]),
+        ],
       });
-
-      if (!response.ok) {
-        throw new Error('Erro ao criar tarefa');
-      }
-
-      const responseData = await response.json();
-      console.log(responseData); // Aqui você pode lidar com a resposta do servidor conforme necessário
-
-      return responseData; // Isso pode ser útil dependendo do que você quer fazer com a resposta
-    } catch (error) {
-      console.error('Erro ao enviar POST:', error);
-      throw error; // Lançar o erro novamente para que o chamador possa lidar com ele, se necessário
-    }
+    handlePost();
   };
   return (
     <View className={styles.content}>
