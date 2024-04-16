@@ -7,3 +7,5 @@
   <li>Incializar o projeto: npm run start</li>
   <li>Ter o Expo Go instalado e ler o Qr code gerado pelo comando acima</li>
 </ol>
+<strong>Esse projeto é referente ao front-end o back-end esta no seguite reposistorio que foi desenvolvido por:</strong>
+<a href="https://github.com/MatheusFariasFernandess/task-manager" style="text-decoration: none;">Matheus Farias Fernandes</a>
