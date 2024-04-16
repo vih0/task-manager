@@ -1,14 +1,14 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-import EditScreenInfo from '../components/edit-screen-info';
+
 
 export default function TabOneScreen() {
   return (
     <View className={styles.container}>
       <Text className={styles.title}>Tab One</Text>
       <View className={styles.separator} />
-      <EditScreenInfo path="src/screens/one.tsx" />
+      <Text>Tela de Perfil</Text>
     </View>
   );
 }

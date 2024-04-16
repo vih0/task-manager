@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-export default function EditScreenInfo({ path }: { path: string }) {
+export function EditScreenInfo({ path }: { path: string }) {
   return (
     <View>
       <View className={styles.getStartedContainer}>

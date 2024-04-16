@@ -4,7 +4,6 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Button, Platform, Pressable, Text, TextInput, View } from 'react-native';
 
-import EditScreenInfo from '../components/edit-screen-info';
 import { TaskForm } from '~/components';
 
 

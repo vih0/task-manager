@@ -29,7 +29,7 @@ export default function RootStack() {
             presentation: 'modal',
             headerTitle: '',
             headerLeft: () => null,
-            headerShown:false
+            headerShown: false,
           }}
         />
       </Stack.Navigator>

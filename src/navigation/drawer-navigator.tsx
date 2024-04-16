@@ -1,4 +1,4 @@
-import { FontAwesome, Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome, Ionicons, AntDesign } from '@expo/vector-icons';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react';
@@ -29,26 +29,8 @@ export default function DrawerNavigator({ navigation }: Props) {
         name="Tabs"
         component={TabNavigator}
         options={{
-          headerRight: () => (
-            <Pressable onPress={() => navigation.navigate('Modal')}>
-              {({ pressed }) => (
-                <FontAwesome
-                  name="info-circle"
-                  size={25}
-                  color="gray"
-                  style={[
-                    {
-                      marginRight: 16,
-                      opacity: pressed ? 0.5 : 1,
-                    },
-                  ]}
-                />
-              )}
-            </Pressable>
-          ),
-          drawerIcon: ({ size, color }) => (
-            <MaterialIcons name="border-bottom" size={size} color={color} />
-          ),
+          headerTitle: '',
+          
         }}
       />
     </Drawer.Navigator>
