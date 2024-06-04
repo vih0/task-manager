@@ -6,7 +6,6 @@ import { Button, Platform, Pressable, Text, TextInput, View } from 'react-native
 
 import { TaskForm } from '~/components';
 
-
 export default function Modal() {
   const navigation = useNavigation();
 

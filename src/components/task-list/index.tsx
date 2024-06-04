@@ -3,10 +3,14 @@ import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 
 import { Tarefas } from '~/@types';
+import { styles } from './styles';
 
 export function TasksList({ tarefas }: Tarefas) {
+  const isEmptyArray = tarefas.length
+console.log(isEmptyArray)
   return (
     <View className="w-full px-4 gap-4">
+
       {tarefas.map((tarefa) => (
         <View className={styles.container} key={tarefa.id}>
           <View className={styles.priority} style={{ backgroundColor: tarefa.prioridade.cor }} />
@@ -30,11 +34,3 @@ export function TasksList({ tarefas }: Tarefas) {
   );
 }
 
-const styles = {
-  container: `flex flex-row w-4/5 px-5 justify-start gap-4 items-center`,
-  priority: `w-2 h-full`,
-  content: `flex w-full`,
-  title: `font-bold text-xl`,
-  description: `text-slate-400`,
-  button: `p-3`,
-};

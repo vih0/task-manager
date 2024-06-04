@@ -30,7 +30,6 @@ export default function DrawerNavigator({ navigation }: Props) {
         component={TabNavigator}
         options={{
           headerTitle: '',
-          
         }}
       />
     </Drawer.Navigator>

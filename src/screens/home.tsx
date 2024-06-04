@@ -7,19 +7,18 @@ import { Methods } from '../functions/methods';
 
 import { Tarefas } from '~/@types';
 import { TasksList } from '~/components';
+import { EmptyList } from '~/components/empty-list';
 
 const Page = () => {
   const [tasks, setTasks] = useState([]);
 
-
-  useEffect(() => {
-    Methods.get({ url: 'https://jsonplaceholder.typicode.com/posts', setResult: setTasks })
-      .then(() => console.log('Dados carregados com sucesso!'))
-      .catch((err) => console.error('Erro ao carregar dados:', err));
-  }, []);
-
+  // useEffect(() => {
+  //   Methods.get({ url: 'https://jsonplaceholder.typicode.com/posts', setResult: setTasks })
+  //     .then(() => console.log('Dados carregados com sucesso!'))
+  //     .catch((err) => console.error('Erro ao carregar dados:', err));
+  // }, []);
   const navigation = useNavigation();
-
+  const isEmptyArray = tasks.length === 0
   const day = new Date();
   const formatedDate = Intl.DateTimeFormat('pt-BR', {
     dateStyle: 'short',
@@ -31,7 +30,8 @@ const Page = () => {
         <Text className={styles.title}>{formatedDate}</Text>
       </View>
       <View className={styles.separator} />
-      {/* <TasksList tarefas={tasks} /> */}
+      
+      {isEmptyArray ? <EmptyList/> : <TasksList tarefas={tasks} />}
       <Pressable className={styles.button} onPress={() => navigation.navigate('Modal' as never)}>
         <Ionicons name="add-outline" size={30} color="white" />
       </Pressable>
