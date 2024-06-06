@@ -1,4 +1,4 @@
-import React, { Button, View } from 'react-native';
+import React, { Button, Text, TouchableOpacity, View } from 'react-native';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
 import { Input } from '~/components/input';
 import { useState } from 'react';
@@ -23,7 +23,7 @@ export function Login(){
     const handleCreateUser =  (data:UserProps)=>{
             const handlePost = async () =>
               await Methods.post({
-                url: 'http://192.168.0.21:8080/usuario/cadastrar',
+                url: 'http://192.168.0.21:8080/usuario/login',
                 body:{
                     login:data.user,
                     senha:data.senha
@@ -32,14 +32,15 @@ export function Login(){
             handlePost();
     }
     return( 
-    <View>
+    <View className='flex gap-9 my-6 w-11/12 mx-auto'>
+        <Text className='text-2xl text-center text-slate-800 font-medium mt-6'>Faça Login para começar a Organizar suas atividades</Text>
          <Controller
           control={control}
           rules={{ required: true }}
           render={({ field: { onChange, value } }) => (
               <Input 
               onChangeText={onChange}
-              value={value} />
+              value={value} placeholder='Insira seu login' />
           )}
           name='user'
           />
@@ -47,14 +48,16 @@ export function Login(){
           control={control}
           rules={{ required: true }}
           render={({ field: { onChange, value } }) => (
-              <Input value={value} onChangeText={onChange}/>
+              <Input value={value} onChangeText={onChange} placeholder='Insira sua senha'/>
             )}
             name='senha'
           />
-        <Button
+        <TouchableOpacity  
         onPress={handleSubmit(handleCreateUser)}
-        title='Cadastrar'
-        />
+        className='bg-blue-900 p-5 rounded-md'
+        >
+            <Text className='text-slate-100 font-bold text-center text-lg uppercase'>entrar</Text>
+        </TouchableOpacity>
     </View>
 )
 }
