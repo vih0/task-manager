@@ -1,4 +1,4 @@
-import { FontAwesome, Ionicons, AntDesign } from '@expo/vector-icons';
+import { FontAwesome, Ionicons, AntDesign, Feather } from '@expo/vector-icons';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react';
@@ -8,6 +8,8 @@ import { RootStackParamList } from '.';
 import TabNavigator from './tab-navigator';
 import Home from '../screens/home';
 import { Login } from '~/screens/login';
+import { Cadastro } from '~/screens/cadastro';
+import { Profile } from '~/screens/profile';
 
 type Props = StackScreenProps<RootStackParamList, 'DrawerNavigator'>;
 
@@ -21,25 +23,37 @@ export default function DrawerNavigator({ navigation }: Props) {
         component={Home}
         options={{
           drawerIcon: ({ size, color }) => (
-            <Ionicons name="home-outline" size={size} color={color} />
+            <Feather name="home" size={size} color={color} />
+          ),
+          headerTitle: '',
+        }}
+      />
+
+      <Drawer.Screen
+        name="Perfil"
+        component={Profile}
+        options={{
+          drawerIcon: ({ size, color }) => (
+            <Feather name="user" size={size} color={color} />
           ),
           headerTitle: '',
         }}
       />
       <Drawer.Screen
-        name="Tabs"
-        component={TabNavigator}
-        options={{
-          headerTitle: '',
-        }}
-      />
-       <Drawer.Screen
-        name="cadastrar"
+        name="login"
         component={Login}
         options={{
           headerTitle: '',
         }}
       />
+      <Drawer.Screen
+        name="cadastro"
+        component={Cadastro}
+        options={{
+          headerTitle: '',
+        }}
+      />
+
     </Drawer.Navigator>
   );
 }
