@@ -1,6 +1,6 @@
 import React from 'react';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
-import { Button, Pressable, Text, TextInput, View } from 'react-native';
+import { Pressable, Text, TextInput, View } from 'react-native';
 
 import { Methods } from '~/functions/methods';
 import { styles } from './styles';

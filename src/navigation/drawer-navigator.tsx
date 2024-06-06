@@ -7,6 +7,7 @@ import { Pressable } from 'react-native';
 import { RootStackParamList } from '.';
 import TabNavigator from './tab-navigator';
 import Home from '../screens/home';
+import { Login } from '~/screens/login';
 
 type Props = StackScreenProps<RootStackParamList, 'DrawerNavigator'>;
 
@@ -28,6 +29,13 @@ export default function DrawerNavigator({ navigation }: Props) {
       <Drawer.Screen
         name="Tabs"
         component={TabNavigator}
+        options={{
+          headerTitle: '',
+        }}
+      />
+       <Drawer.Screen
+        name="cadastrar"
+        component={Login}
         options={{
           headerTitle: '',
         }}

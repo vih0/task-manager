@@ -5,7 +5,7 @@ type GetProps = {
 };
 type PostProps = {
   url: string;
-  body: object[];
+  body: object;
 };
 export class Methods {
   static async get({ url, setResult }: GetProps) {
