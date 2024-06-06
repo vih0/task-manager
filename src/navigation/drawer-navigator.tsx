@@ -39,20 +39,7 @@ export default function DrawerNavigator({ navigation }: Props) {
           headerTitle: '',
         }}
       />
-      <Drawer.Screen
-        name="login"
-        component={Login}
-        options={{
-          headerTitle: '',
-        }}
-      />
-      <Drawer.Screen
-        name="cadastro"
-        component={Cadastro}
-        options={{
-          headerTitle: '',
-        }}
-      />
+   
 
     </Drawer.Navigator>
   );

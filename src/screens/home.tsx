@@ -9,7 +9,7 @@ import { Tarefas } from '~/@types';
 import { TasksList } from '~/components';
 import { EmptyList } from '~/components/empty-list';
 
-const Page = () => {
+export function Home() {
   const [tasks, setTasks] = useState([]);
 
   // useEffect(() => {
@@ -24,27 +24,17 @@ const Page = () => {
     dateStyle: 'short',
   }).format(day);
   return (
-    <View className={styles.container}>
-      <View className={styles.content}>
-        <Text className={styles.title}>Suas Atividades</Text>
-        <Text className={styles.title}>{formatedDate}</Text>
+    <View className="items-center flex-1 justify-start mt-4 relative">
+      <View className="flex flex-row justify-around w-full">
+        <Text className="text-xl font-bold">Suas Atividades</Text>
+        <Text className="text-xl font-bold">{formatedDate}</Text>
       </View>
-      <View className={styles.separator} />
-      
-      {isEmptyArray ? <EmptyList/> : <TasksList tarefas={tasks} />}
-      <Pressable className={styles.button} onPress={() => navigation.navigate('Modal' as never)}>
+      <View className="h-[1px] my-7 w-4/5 bg-gray-200" />
+
+      {isEmptyArray ? <EmptyList /> : <TasksList tarefas={tasks} />}
+      <Pressable className="p-3 bg-blue-700 rounded-full absolute bottom-20 right-10 active:bg-blue-800" onPress={() => navigation.navigate('Modal' as never)}>
         <Ionicons name="add-outline" size={30} color="white" />
       </Pressable>
     </View>
   );
-};
-
-export default Page;
-
-const styles = {
-  container: `items-center flex-1 justify-start mt-4 relative`,
-  separator: `h-[1px] my-7 w-4/5 bg-gray-200`,
-  title: `text-xl font-bold`,
-  content: `flex flex-row justify-around w-full`,
-  button: `p-3 bg-blue-700 rounded-full absolute bottom-20 right-10 active:bg-blue-800`,
 };
