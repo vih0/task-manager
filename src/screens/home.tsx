@@ -8,9 +8,11 @@ import { Methods } from '../functions/methods';
 import { Tarefas } from '~/@types';
 import { TasksList } from '~/components';
 import { EmptyList } from '~/components/empty-list';
+import { useAuth } from '~/contexts/auth';
 
 export function Home() {
   const [tasks, setTasks] = useState([]);
+  const {authData} = useAuth()
 
   // useEffect(() => {
   //   Methods.get({ url: 'https://jsonplaceholder.typicode.com/posts', setResult: setTasks })
@@ -26,6 +28,9 @@ export function Home() {
   return (
     <View className="items-center flex-1 justify-start mt-4 relative">
       <View className="flex flex-row justify-around w-full">
+        <Text className='font-semibold color-zinc-600 text-lg text-left'
+        >Ola, {authData?.name}, suas atividades esperam por você!
+        </Text>
         <Text className="text-xl font-bold">Suas Atividades</Text>
         <Text className="text-xl font-bold">{formatedDate}</Text>
       </View>

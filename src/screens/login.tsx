@@ -3,6 +3,7 @@ import { Controller, FieldValues, useForm } from 'react-hook-form';
 import { Input } from '~/components/input';
 import { useState } from 'react';
 import { Methods } from '~/functions/methods';
+import { useNavigation } from '@react-navigation/native';
 
 type UserProps = {
     user:string
@@ -10,6 +11,7 @@ type UserProps = {
 }
 
 export function Login(){
+  const navigation = useNavigation()
     const {
         control,
         handleSubmit,
@@ -48,16 +50,21 @@ export function Login(){
           control={control}
           rules={{ required: true }}
           render={({ field: { onChange, value } }) => (
-              <Input value={value} onChangeText={onChange} placeholder='Insira sua senha'/>
+              <Input value={value} onChangeText={onChange} placeholder='Insira sua senha' secureTextEntry/>
             )}
             name='senha'
           />
+        <View>
         <TouchableOpacity  
         onPress={handleSubmit(handleCreateUser)}
         className='bg-blue-900 p-5 rounded-md'
         >
             <Text className='text-slate-100 font-bold text-center text-lg uppercase'>entrar</Text>
         </TouchableOpacity>
+        <TouchableOpacity onPress={()=>navigation.navigate('Cadastro')}>
+        <Text>Ainda não tem cadastro? clique aqui</Text>
+        </TouchableOpacity>
+          </View>
     </View>
 )
 }
