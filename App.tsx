@@ -1,3 +1,4 @@
+import { StatusBar } from 'expo-status-bar';
 import './global.css';
 import React from 'react';
 import 'react-native-gesture-handler';
@@ -6,10 +7,11 @@ import { Router } from '~/routes/route';
 
 export default function App() {
 
-  return( 
+  return (
     <AuthProvider>
+      <StatusBar style='light' />
 
-  <Router />
+      <Router />
     </AuthProvider>
-);
+  );
 }

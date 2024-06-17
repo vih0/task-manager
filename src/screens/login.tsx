@@ -6,65 +6,65 @@ import { Methods } from '~/functions/methods';
 import { useNavigation } from '@react-navigation/native';
 
 type UserProps = {
-    user:string
-    senha:string
+  user: string
+  senha: string
 }
 
-export function Login(){
+export function Login() {
   const navigation = useNavigation()
-    const {
-        control,
-        handleSubmit,
-        formState: { errors },
-      } = useForm<UserProps, FieldValues>({
-        defaultValues: {
-         user:'',
-         senha: ''
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<UserProps, FieldValues>({
+    defaultValues: {
+      user: '',
+      senha: ''
+    },
+  });
+  const handleCreateUser = (data: UserProps) => {
+    const handlePost = async () =>
+      await Methods.post({
+        url: 'http://192.168.0.21:8080/usuario/login',
+        body: {
+          login: data.user,
+          senha: data.senha
         },
       });
-    const handleCreateUser =  (data:UserProps)=>{
-            const handlePost = async () =>
-              await Methods.post({
-                url: 'http://192.168.0.21:8080/usuario/login',
-                body:{
-                    login:data.user,
-                    senha:data.senha
-                },
-              });
-            handlePost();
-    }
-    return( 
+    handlePost();
+  }
+  return (
     <View className='flex gap-9 my-6 w-11/12 mx-auto'>
-        <Text className='text-2xl text-center text-slate-800 font-medium mt-6'>Faça Login para começar a Organizar suas atividades</Text>
-         <Controller
-          control={control}
-          rules={{ required: true }}
-          render={({ field: { onChange, value } }) => (
-              <Input 
-              onChangeText={onChange}
-              value={value} placeholder='Insira seu login' />
-          )}
-          name='user'
-          />
-          <Controller
-          control={control}
-          rules={{ required: true }}
-          render={({ field: { onChange, value } }) => (
-              <Input value={value} onChangeText={onChange} placeholder='Insira sua senha' secureTextEntry/>
-            )}
-            name='senha'
-          />
-        <View>
-        <TouchableOpacity  
-        onPress={handleSubmit(handleCreateUser)}
-        className='bg-blue-900 p-5 rounded-md'
+      <Text className='text-2xl text-center text-slate-800 font-medium mt-6'>Faça Login para começar a Organizar suas atividades</Text>
+      <Controller
+        control={control}
+        rules={{ required: true }}
+        render={({ field: { onChange, value } }) => (
+          <Input
+            onChangeText={onChange}
+            value={value} placeholder='Insira seu login' />
+        )}
+        name='user'
+      />
+      <Controller
+        control={control}
+        rules={{ required: true }}
+        render={({ field: { onChange, value } }) => (
+          <Input value={value} onChangeText={onChange} placeholder='Insira sua senha' secureTextEntry />
+        )}
+        name='senha'
+      />
+      <View>
+        <TouchableOpacity
+          onPress={handleSubmit(handleCreateUser)}
+          className='bg-blue-900 p-5 rounded-md'
         >
-            <Text className='text-slate-100 font-bold text-center text-lg uppercase'>entrar</Text>
+          <Text className='text-slate-100 font-bold text-center text-lg uppercase'>entrar</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>navigation.navigate('Cadastro')}>
-        <Text>Ainda não tem cadastro? clique aqui</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Cadastro')}>
+          <Text>Ainda não tem cadastro? clique aqui</Text>
         </TouchableOpacity>
-          </View>
+      </View>
     </View>
-)
+  )
 }

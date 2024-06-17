@@ -47,6 +47,7 @@ export function TaskForm() {
           render={({ field: { onChange, onBlur, value } }) => (
             <TextInput
               className={styles.input}
+              placeholder='Digite o titulo da sua tarefa'
               onChangeText={onChange}
               onBlur={onBlur}
               value={value}
@@ -64,6 +65,7 @@ export function TaskForm() {
           render={({ field: { onChange, onBlur, value } }) => (
             <TextInput
               className={styles.input}
+              placeholder='Digite o descrição da sua tarefa'
               onChangeText={onChange}
               onBlur={onBlur}
               value={value}
