@@ -34,36 +34,46 @@ export function Login() {
     handlePost();
   }
   return (
-    <View className='flex gap-9 my-6 w-11/12 mx-auto'>
-      <Text className='text-2xl text-center text-slate-800 font-medium mt-6'>Faça Login para começar a Organizar suas atividades</Text>
-      <Controller
-        control={control}
-        rules={{ required: true }}
-        render={({ field: { onChange, value } }) => (
-          <Input
-            onChangeText={onChange}
-            value={value} placeholder='Insira seu login' />
-        )}
-        name='user'
-      />
-      <Controller
-        control={control}
-        rules={{ required: true }}
-        render={({ field: { onChange, value } }) => (
-          <Input value={value} onChangeText={onChange} placeholder='Insira sua senha' secureTextEntry />
-        )}
-        name='senha'
-      />
-      <View>
-        <TouchableOpacity
-          onPress={handleSubmit(handleCreateUser)}
-          className='bg-blue-900 p-5 rounded-md'
-        >
-          <Text className='text-slate-100 font-bold text-center text-lg uppercase'>entrar</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('Cadastro')}>
-          <Text>Ainda não tem cadastro? clique aqui</Text>
-        </TouchableOpacity>
+    <View className='flex flex-1 gap-9 py-6 w-full items-center justify-center bg-zinc-800'>
+      <View className='flex gap-9 my-6 w-11/12'>
+
+        <Text className='text-2xl text-center text-zinc-200 font-medium mt-6'>Faça Login para começar a Organizar suas atividades</Text>
+        <Controller
+          control={control}
+          rules={{ required: true }}
+          render={({ field: { onChange, value } }) => (
+            <Input
+              className='color-zinc-100 placeholder:color-zinc-200 text-lg'
+              onChangeText={onChange}
+              value={value} placeholder='Insira seu login' />
+          )}
+          name='user'
+        />
+        <Controller
+          control={control}
+          rules={{ required: true }}
+          render={({ field: { onChange, value } }) => (
+            <Input
+              className='color-zinc-100 placeholder:color-zinc-200 text-lg'
+              value={value}
+              onChangeText={onChange}
+              placeholder='Insira sua senha'
+              secureTextEntry
+            />
+          )}
+          name='senha'
+        />
+        <View>
+          <TouchableOpacity
+            onPress={handleSubmit(handleCreateUser)}
+            className='bg-violet-900 p-5 rounded-md'
+          >
+            <Text className='text-slate-100 font-bold text-center text-lg uppercase'>entrar</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Cadastro')}>
+            <Text className='self-end text-zinc-400 font-medium mt-5'>Ainda não tem cadastro? clique aqui</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   )
