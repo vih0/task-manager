@@ -1,9 +1,10 @@
-import React, { Button, Text, TouchableOpacity, View } from 'react-native';
+import React, { Text, TouchableOpacity, View } from 'react-native';
 import { Controller, FieldValues, useForm } from 'react-hook-form';
-import { Input } from '~/components/input';
-import { useState } from 'react';
+
+import { Input } from '~/components';
 import { Methods } from '~/functions/methods';
 import { useNavigation } from '@react-navigation/native';
+import { useAuth } from '~/contexts/auth';
 
 type UserProps = {
   user: string
@@ -11,6 +12,7 @@ type UserProps = {
 }
 
 export function Login() {
+  const { signIn } = useAuth()
   const navigation = useNavigation()
   const {
     control,
@@ -23,15 +25,18 @@ export function Login() {
     },
   });
   const handleCreateUser = (data: UserProps) => {
-    const handlePost = async () =>
-      await Methods.post({
-        url: 'http://192.168.0.21:8080/usuario/login',
-        body: {
-          login: data.user,
-          senha: data.senha
-        },
-      });
+    const handlePost = async () => {
+      await signIn(data.user, data.senha)
+    }
+    // await Methods.post({
+    //   url: 'http://192.168.0.21:8080/usuario/login',
+    //   body: {
+    //     login: data.user,
+    //     senha: data.senha
+    //     },
+    //     });
     handlePost();
+
   }
   return (
     <View className='flex flex-1 gap-9 py-6 w-full items-center justify-center bg-zinc-800'>
@@ -43,7 +48,6 @@ export function Login() {
           rules={{ required: true }}
           render={({ field: { onChange, value } }) => (
             <Input
-              className='color-zinc-100 placeholder:color-zinc-200 text-lg'
               onChangeText={onChange}
               value={value} placeholder='Insira seu login' />
           )}
@@ -54,7 +58,7 @@ export function Login() {
           rules={{ required: true }}
           render={({ field: { onChange, value } }) => (
             <Input
-              className='color-zinc-100 placeholder:color-zinc-200 text-lg'
+
               value={value}
               onChangeText={onChange}
               placeholder='Insira sua senha'

@@ -4,18 +4,24 @@ import { Pressable, Text, TextInput, View } from 'react-native';
 
 import { Methods } from '~/functions/methods';
 import { styles } from './styles';
-type FormData = {
-  titulo: string;
-  descricao: string;
-  prioridade: number;
-};
+import { Input } from '../input';
+import { SelectOptions } from '../select-option/select';
+import { z } from 'zod';
+
+
+const taskSchema = z.object({
+  titulo: z.string({ required_error: 'Titulo é obrigatorio' }).min(3, { message: "Titulo precisa ser um pouco mais longo" }),
+  descricao: z.string({ required_error: 'descrição é obrigatória' }),
+  prioridade: z.number().int().lte(3),
+});
+type TaskSchema = z.infer<typeof taskSchema>
 
 export function TaskForm() {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData, FieldValues>({
+  } = useForm<TaskSchema, FieldValues>({
     defaultValues: {
       titulo: '',
       descricao: '',
@@ -23,7 +29,7 @@ export function TaskForm() {
     },
   });
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = (data: TaskSchema) => {
     const handlePost = async () =>
       await Methods.post({
         url: 'http://192.168.0.21:8080/tarefa/criar',
@@ -45,8 +51,7 @@ export function TaskForm() {
           control={control}
           rules={{ required: true }}
           render={({ field: { onChange, onBlur, value } }) => (
-            <TextInput
-              className={styles.input}
+            <Input
               placeholder='Digite o titulo da sua tarefa'
               onChangeText={onChange}
               onBlur={onBlur}
@@ -56,15 +61,14 @@ export function TaskForm() {
           name="titulo"
         />
       </View>
-      {errors.titulo && <Text className={styles.error_text}>Campo Obrigatorio.</Text>}
+      {errors.titulo?.message && <Text className={styles.error_text}>Campo Obrigatorio.</Text>}
       <Text className={styles.label}>Descrição</Text>
       <View className={styles.container_input}>
         <Controller
           control={control}
           rules={{ required: true }}
           render={({ field: { onChange, onBlur, value } }) => (
-            <TextInput
-              className={styles.input}
+            <Input
               placeholder='Digite o descrição da sua tarefa'
               onChangeText={onChange}
               onBlur={onBlur}
@@ -74,7 +78,8 @@ export function TaskForm() {
           name="descricao"
         />
       </View>
-      {errors.descricao && <Text className={styles.error_text}>Campo Obrigatorio.</Text>}
+      {errors.descricao?.message && <Text className={styles.error_text}>Campo Obrigatorio.</Text>}
+      <SelectOptions />
       <Pressable className={styles.button} onPress={handleSubmit(onSubmit)}>
         <Text className={styles.text_button}>Salvar</Text>
       </Pressable>

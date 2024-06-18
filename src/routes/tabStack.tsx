@@ -8,7 +8,16 @@ const Tab = createBottomTabNavigator();
 
 export function TabsStack() {
     return (
-        <Tab.Navigator>
+        <Tab.Navigator
+            screenOptions={{
+                tabBarStyle: {
+                    backgroundColor: '#4c1d95',
+                    height: 70,
+                    borderTopColor: 'transparent'
+                },
+                tabBarActiveTintColor: '#f4f4f5'
+            }}
+        >
             <Tab.Screen name="Incío" component={Home} options={{
                 tabBarIcon: ({ size, color }) => (
                     <Feather name="home" size={size} color={color} />
